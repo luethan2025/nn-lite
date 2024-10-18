@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.10)
+project(nn-lite LANGUAGES CXX)
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  message(STATUS "You're using ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+  message(STATUS "You're using ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
+endif()
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
