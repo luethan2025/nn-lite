@@ -1,4 +1,4 @@
-# Getting Started
+## Getting Started
 This project consists of C++ code files, located in `src/`, that are optimized
 for deep learning on the the Arduino microcontroller. Each of these files
 can be compiled into an executable with the same name. Use CMake to build these
