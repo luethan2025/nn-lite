@@ -23,10 +23,10 @@ include_directories(BEFORE src)
 # ##############################################################################
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-  DOWNLOAD_EXTRACT_TIMESTAMP true
-)
+        googletest
+        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+        DOWNLOAD_EXTRACT_TIMESTAMP true
+        )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
@@ -47,13 +47,13 @@ add_subdirectory(test)
 # "make format"
 # #########################################
 file(GLOB_RECURSE NN_LITE_FORMAT_FILES
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
-  "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/test/*.h"
-)
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp"
+        "${CMAKE_CURRENT_SOURCE_DIR}/test/*.h"
+        )
 
 add_custom_target(
-  format
-  COMMAND clang-format -i ${NN_LITE_FORMAT_FILES}
-)
+        format
+        COMMAND clang-format -i ${NN_LITE_FORMAT_FILES}
+        )
