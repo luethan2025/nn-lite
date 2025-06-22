@@ -32,3 +32,28 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
+
+# ##############################################################################
+# CMAKE MODULES
+# ##############################################################################
+add_subdirectory(src)
+add_subdirectory(test)
+
+# ##############################################################################
+# MAKE TARGETS
+# ##############################################################################
+
+# #########################################
+# "make format"
+# #########################################
+file(GLOB_RECURSE NN_LITE_FORMAT_FILES
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/test/*.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/test/*.h"
+)
+
+add_custom_target(
+  format
+  COMMAND clang-format -i ${NN_LITE_FORMAT_FILES}
+)
