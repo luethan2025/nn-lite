@@ -18,6 +18,16 @@ class FloatTensor {
 public:
   FloatTensor(float *data, size_t *size, size_t ndim);
   ~FloatTensor();
+
+  /**
+   * @brief Divides each element of the stored data by input `value`.
+   *
+   * This method will perform division as an in-place operation.
+   *
+   * @param value The value to divide by.
+   */
+  void div_(float value);
+
   /** @brief Input data. */
   float *data_;
 

@@ -25,4 +25,17 @@ FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim)
 
 FloatTensor::~FloatTensor() { delete[] grad_; }
 
+/**
+ * @brief Divides each element of the stored data by input `value`.
+ *
+ * This method will perform division as an in-place operation.
+ *
+ * @param value The value to divide by.
+ */
+void FloatTensor::div_(float value) {
+  for (size_t i = 0; i < numel_; ++i) {
+    data_[i] /= value;
+  }
+}
+
 } // namespace focus
