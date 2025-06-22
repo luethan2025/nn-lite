@@ -8,6 +8,9 @@ file(GLOB_RECURSE FOCUS_TEST_SOURCES "${PROJECT_SOURCE_DIR}/test/*/*test.cpp")
 # MAKE TARGETS
 # ##############################################################################
 
+# #########################################
+# "make XYZ_test"
+# #########################################
 foreach (focus_test_source ${FOCUS_TEST_SOURCES})
   get_filename_component(focus_test_filename ${focus_test_source} NAME)
   string(REPLACE ".cpp" "" focus_test_name ${focus_test_filename})
