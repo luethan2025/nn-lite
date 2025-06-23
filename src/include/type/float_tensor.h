@@ -56,6 +56,15 @@ public:
   void sub_(float value);
 
   /**
+   * @brief Multiplies input `value` to each element of the stored data.
+   *
+   * This method will perform multiplication as an in-place operation.
+   *
+   * @param value The value to multiply by.
+   */
+  void mul_(float value);
+
+  /**
    * @brief Divides each element of the stored data by input `value`.
    *
    * This method will perform division as an in-place operation.

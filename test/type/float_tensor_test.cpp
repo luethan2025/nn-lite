@@ -509,4 +509,58 @@ TEST(FloatTensorTest, FloatTensorInPlaceTensorSubtraction) {
   }
 }
 
+TEST(FloatTensorTest, FloatTensorInPlaceConstantMultplication) {
+  {
+    reset_A();
+    size_t size[2] = {2, 2};
+    size_t ndim = 2;
+    float expected_values[4] = {0};
+    auto x = FloatTensor(&A[0][0], size, ndim);
+    int value = 0;
+    x.mul_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_B();
+    size_t size[2] = {3, 2};
+    size_t ndim = 2;
+    float expected_values[6] = {0};
+    auto x = FloatTensor(&B[0][0], size, ndim);
+    int value = 0;
+    x.mul_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_C();
+    size_t size[3] = {2, 3, 2};
+    size_t ndim = 3;
+    float expected_values[12] = {0};
+    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    int value = 0;
+    x.mul_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_D();
+    size_t size[4] = {2, 2, 3, 2};
+    size_t ndim = 4;
+    float expected_values[24] = {0};
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    int value = 0;
+    x.mul_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+}
+
 } // namespace focus
