@@ -383,4 +383,130 @@ TEST(FloatTensorTest, FloatTensorInPlaceTensorAddition) {
   }
 }
 
+TEST(FloatTensorTest, FloatTensorInPlaceConstantSubtraction) {
+  {
+    reset_A();
+    size_t size[2] = {2, 2};
+    size_t ndim = 2;
+    float expected_values[4] = {0, 1, 2, 3};
+    auto x = FloatTensor(&A[0][0], size, ndim);
+    int value = 1;
+    x.sub_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_B();
+    size_t size[2] = {3, 2};
+    size_t ndim = 2;
+    float expected_values[6] = {0, 1, 2, 3, 4, 5};
+    auto x = FloatTensor(&B[0][0], size, ndim);
+    int value = 1;
+    x.sub_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_C();
+    size_t size[3] = {2, 3, 2};
+    size_t ndim = 3;
+    float expected_values[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    int value = 1;
+    x.sub_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_D();
+    size_t size[4] = {2, 2, 3, 2};
+    size_t ndim = 4;
+    float expected_values[24] = {0,  1,  2,  3,  4,  5,  6,  7,
+                                 8,  9,  10, 11, 12, 13, 14, 15,
+                                 16, 17, 18, 19, 20, 21, 22, 23};
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    int value = 1;
+    x.sub_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+}
+
+TEST(FloatTensorTest, FloatTensorInPlaceTensorSubtraction) {
+  {
+    reset_A();
+    size_t size[2] = {2, 2};
+    size_t ndim = 2;
+    float expected_values[4] = {0};
+    auto x = FloatTensor(&A[0][0], size, ndim);
+    float other_data[2][2] = {{1, 2}, {3, 4}};
+    auto other = FloatTensor(&other_data[0][0], size, ndim);
+    x.sub_(other);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_B();
+    size_t size[2] = {3, 2};
+    size_t ndim = 2;
+    float expected_values[6] = {0};
+    auto x = FloatTensor(&B[0][0], size, ndim);
+    float other_data[3][2] = {{1, 2}, {3, 4}, {5, 6}};
+    auto other = FloatTensor(&other_data[0][0], size, ndim);
+    x.sub_(other);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_C();
+    size_t size[3] = {2, 3, 2};
+    size_t ndim = 3;
+    float expected_values[12] = {0};
+    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    float other_data[2][3][2] = {{{1, 2}, {3, 4}, {5, 6}},
+                                 {{7, 8}, {9, 10}, {11, 12}}};
+    auto other = FloatTensor(&other_data[0][0][0], size, ndim);
+    x.sub_(other);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_D();
+    size_t size[4] = {2, 2, 3, 2};
+    size_t ndim = 4;
+    float expected_values[24] = {0};
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    float other_data[2][2][3][2] = {
+        {{{1, 2}, {3, 4}, {5, 6}}, {{7, 8}, {9, 10}, {11, 12}}},
+        {{
+             {13, 14},
+             {15, 16},
+             {17, 18},
+         },
+         {
+             {19, 20},
+             {21, 22},
+             {23, 24},
+         }}};
+    auto other = FloatTensor(&other_data[0][0][0][0], size, ndim);
+    x.sub_(other);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+}
+
 } // namespace focus

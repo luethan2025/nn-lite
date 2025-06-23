@@ -38,6 +38,24 @@ public:
   void add_(float value);
 
   /**
+   * @brief Subtracts input `other` from the stored data.
+   *
+   * This method will perform subtraction as an in-place operation.
+   *
+   * @param other The tensor to subtract by.
+   */
+  void sub_(FloatTensor &other);
+
+  /**
+   * @brief Subtracts input `value` from each element of the stored data.
+   *
+   * This method will perform subtraction as an in-place operation.
+   *
+   * @param value The value to subtract by.
+   */
+  void sub_(float value);
+
+  /**
    * @brief Divides each element of the stored data by input `value`.
    *
    * This method will perform division as an in-place operation.
