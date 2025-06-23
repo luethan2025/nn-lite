@@ -20,6 +20,24 @@ public:
   ~FloatTensor();
 
   /**
+   * @brief Adds input `other` to the stored data.
+   *
+   * This method will perform addition as an in-place operation.
+   *
+   * @param other The tensor to add by.
+   */
+  void add_(FloatTensor &other);
+
+  /**
+   * @brief Adds input `value` to each element of the stored data.
+   *
+   * This method will perform addition as an in-place operation.
+   *
+   * @param value The value to add by.
+   */
+  void add_(float value);
+
+  /**
    * @brief Divides each element of the stored data by input `value`.
    *
    * This method will perform division as an in-place operation.
