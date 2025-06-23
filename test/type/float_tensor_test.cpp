@@ -197,64 +197,6 @@ TEST(FloatTensorTest, FloatTensorGradInitialization) {
   }
 }
 
-TEST(FloatTensorTest, FloatTensorInPlaceDivision) {
-  {
-    reset_A();
-    size_t size[2] = {2, 2};
-    size_t ndim = 2;
-    float expected_values[4] = {0.5f, 1.0f, 1.5f, 2.0f};
-    auto x = FloatTensor(&A[0][0], size, ndim);
-    int value = 2;
-    x.div_(value);
-    for (size_t i = 0; i < x.numel_; ++i) {
-      EXPECT_EQ(x.data_[i], expected_values[i]);
-    }
-  }
-
-  {
-    reset_B();
-    size_t size[2] = {3, 2};
-    size_t ndim = 2;
-    float expected_values[6] = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f};
-    auto x = FloatTensor(&B[0][0], size, ndim);
-    int value = 2;
-    x.div_(value);
-    for (size_t i = 0; i < x.numel_; ++i) {
-      EXPECT_EQ(x.data_[i], expected_values[i]);
-    }
-  }
-
-  {
-    reset_C();
-    size_t size[3] = {2, 3, 2};
-    size_t ndim = 3;
-    float expected_values[12] = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f,
-                                 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f};
-    auto x = FloatTensor(&C[0][0][0], size, ndim);
-    int value = 2;
-    x.div_(value);
-    for (size_t i = 0; i < x.numel_; ++i) {
-      EXPECT_EQ(x.data_[i], expected_values[i]);
-    }
-  }
-
-  {
-    reset_D();
-    size_t size[4] = {2, 2, 3, 2};
-    size_t ndim = 4;
-    float expected_values[24] = {0.5f, 1.0f,  1.5f,  2.0f,  2.5f,  3.0f,
-                                 3.5f, 4.0f,  4.5f,  5.0f,  5.5f,  6.0f,
-                                 6.5f, 7.0f,  7.5f,  8.0f,  8.5f,  9.0f,
-                                 9.5f, 10.0f, 10.5f, 11.0f, 11.5f, 12.0f};
-    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
-    int value = 2;
-    x.div_(value);
-    for (size_t i = 0; i < x.numel_; ++i) {
-      EXPECT_EQ(x.data_[i], expected_values[i]);
-    }
-  }
-}
-
 TEST(FloatTensorTest, FloatTensorInPlaceConstantAddition) {
   {
     reset_A();
@@ -557,6 +499,64 @@ TEST(FloatTensorTest, FloatTensorInPlaceConstantMultplication) {
     auto x = FloatTensor(&D[0][0][0][0], size, ndim);
     int value = 0;
     x.mul_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+}
+
+TEST(FloatTensorTest, FloatTensorInPlaceDivision) {
+  {
+    reset_A();
+    size_t size[2] = {2, 2};
+    size_t ndim = 2;
+    float expected_values[4] = {0.5f, 1.0f, 1.5f, 2.0f};
+    auto x = FloatTensor(&A[0][0], size, ndim);
+    int value = 2;
+    x.div_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_B();
+    size_t size[2] = {3, 2};
+    size_t ndim = 2;
+    float expected_values[6] = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f};
+    auto x = FloatTensor(&B[0][0], size, ndim);
+    int value = 2;
+    x.div_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_C();
+    size_t size[3] = {2, 3, 2};
+    size_t ndim = 3;
+    float expected_values[12] = {0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f,
+                                 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f};
+    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    int value = 2;
+    x.div_(value);
+    for (size_t i = 0; i < x.numel_; ++i) {
+      EXPECT_EQ(x.data_[i], expected_values[i]);
+    }
+  }
+
+  {
+    reset_D();
+    size_t size[4] = {2, 2, 3, 2};
+    size_t ndim = 4;
+    float expected_values[24] = {0.5f, 1.0f,  1.5f,  2.0f,  2.5f,  3.0f,
+                                 3.5f, 4.0f,  4.5f,  5.0f,  5.5f,  6.0f,
+                                 6.5f, 7.0f,  7.5f,  8.0f,  8.5f,  9.0f,
+                                 9.5f, 10.0f, 10.5f, 11.0f, 11.5f, 12.0f};
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    int value = 2;
+    x.div_(value);
     for (size_t i = 0; i < x.numel_; ++i) {
       EXPECT_EQ(x.data_[i], expected_values[i]);
     }
