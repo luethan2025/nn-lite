@@ -20,6 +20,11 @@ public:
   ~FloatTensor();
 
   /**
+   * @brief Zeros every element in the stored gradient.
+   */
+  void zero_grad_();
+
+  /**
    * @brief Adds input `other` to the stored data.
    *
    * This method will perform addition as an in-place operation.

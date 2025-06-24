@@ -26,6 +26,15 @@ FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim)
 FloatTensor::~FloatTensor() { delete[] grad_; }
 
 /**
+ * @brief Zeros every element in the stored gradient.
+ */
+void FloatTensor::zero_grad_() {
+  for (size_t i = 0; i < numel_; ++i) {
+    grad_[i] = 0;
+  }
+}
+
+/**
  * @brief Adds input `other` to the stored data.
  *
  * This method will perform addition as an in-place operation.
