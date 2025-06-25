@@ -70,6 +70,18 @@ void FloatTensor::add_(float value) {
 }
 
 /**
+ * @brief Adds input `value` to each element of the stored data.
+ *
+ * This method will perform addition as an in-place operation.
+ *
+ * @param value The value to add by.
+ */
+FloatTensor &FloatTensor::operator+=(float value) {
+  add_(value);
+  return *this;
+}
+
+/**
  * @brief Subtracts input `other` from the stored data.
  *
  * This method will perform subtraction as an in-place operation.
@@ -96,6 +108,18 @@ void FloatTensor::sub_(float value) {
 }
 
 /**
+ * @brief Subtracts input `value` from each element of the stored data.
+ *
+ * This method will perform subtraction as an in-place operation.
+ *
+ * @param value The value to subtract by.
+ */
+FloatTensor &FloatTensor::operator-=(float value) {
+  sub_(value);
+  return *this;
+}
+
+/**
  * @brief Multiplies input `value` to each element of the stored data.
  *
  * This method will perform multiplication as an in-place operation.
@@ -109,6 +133,18 @@ void FloatTensor::mul_(float value) {
 }
 
 /**
+ * @brief Multiplies input `value` to each element of the stored data.
+ *
+ * This method will perform multiplication as an in-place operation.
+ *
+ * @param value The value to multiply by.
+ */
+FloatTensor &FloatTensor::operator*=(float value) {
+  mul_(value);
+  return *this;
+}
+
+/**
  * @brief Divides each element of the stored data by input `value`.
  *
  * This method will perform division as an in-place operation.
@@ -119,6 +155,18 @@ void FloatTensor::div_(float value) {
   for (size_t i = 0; i < numel_; ++i) {
     data_[i] /= value;
   }
+}
+
+/**
+ * @brief Divides each element of the stored data by input `value`.
+ *
+ * This method will perform division as an in-place operation.
+ *
+ * @param value The value to divide by.
+ */
+FloatTensor &FloatTensor::operator/=(float value) {
+  div_(value);
+  return *this;
 }
 
 } // namespace focus

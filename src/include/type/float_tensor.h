@@ -44,6 +44,15 @@ public:
   void add_(float value);
 
   /**
+   * @brief Adds input `value` to each element of the stored data.
+   *
+   * This method will perform addition as an in-place operation.
+   *
+   * @param value The value to add by.
+   */
+  FloatTensor &operator+=(float value);
+
+  /**
    * @brief Subtracts input `other` from the stored data.
    *
    * This method will perform subtraction as an in-place operation.
@@ -62,6 +71,15 @@ public:
   void sub_(float value);
 
   /**
+   * @brief Subtracts input `value` from each element of the stored data.
+   *
+   * This method will perform subtraction as an in-place operation.
+   *
+   * @param value The value to subtract by.
+   */
+  FloatTensor &operator-=(float value);
+
+  /**
    * @brief Multiplies input `value` to each element of the stored data.
    *
    * This method will perform multiplication as an in-place operation.
@@ -71,6 +89,15 @@ public:
   void mul_(float value);
 
   /**
+   * @brief Multiplies input `value` to each element of the stored data.
+   *
+   * This method will perform multiplication as an in-place operation.
+   *
+   * @param value The value to multiply by.
+   */
+  FloatTensor &operator*=(float value);
+
+  /**
    * @brief Divides each element of the stored data by input `value`.
    *
    * This method will perform division as an in-place operation.
@@ -78,6 +105,15 @@ public:
    * @param value The value to divide by.
    */
   void div_(float value);
+
+  /**
+   * @brief Divides each element of the stored data by input `value`.
+   *
+   * This method will perform division as an in-place operation.
+   *
+   * @param value The value to divide by.
+   */
+  FloatTensor &operator/=(float value);
 
   /** @brief Input data. */
   float *data_;
