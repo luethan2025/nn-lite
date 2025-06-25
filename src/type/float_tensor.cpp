@@ -12,7 +12,8 @@
 
 namespace focus {
 
-FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim)
+FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim,
+                         bool requires_grad)
     : data_(data), size_(size), ndim_(ndim) {
 
   // Calculate the number of elements based on the provided size.
@@ -20,10 +21,18 @@ FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim)
   for (size_t dim = 0; dim < ndim; ++dim) {
     numel_ *= size_[dim];
   }
-  grad_ = new float[numel_]();
+
+  if (requires_grad) {
+    grad_ = new float[numel_]();
+  }
+  requires_grad_ = requires_grad;
 }
 
-FloatTensor::~FloatTensor() { delete[] grad_; }
+FloatTensor::~FloatTensor() {
+  if (requires_grad_) {
+    delete[] grad_;
+  }
+}
 
 /**
  * @brief Zeros every element in the stored gradient.
