@@ -656,4 +656,46 @@ TEST(FloatTensorTest, FloatTensorInPlaceDivision) {
   }
 }
 
+TEST(FloatTensorTest, FloatTensorSum) {
+  {
+    reset_A();
+    size_t size[2] = {2, 2};
+    size_t ndim = 2;
+    float expected_value = 10;
+    auto x = FloatTensor(&A[0][0], size, ndim);
+    auto out = x.sum_();
+    EXPECT_EQ(out, expected_value);
+  }
+
+  {
+    reset_B();
+    size_t size[2] = {3, 2};
+    size_t ndim = 2;
+    float expected_value = 21;
+    auto x = FloatTensor(&B[0][0], size, ndim);
+    auto out = x.sum_();
+    EXPECT_EQ(out, expected_value);
+  }
+
+  {
+    reset_C();
+    size_t size[3] = {2, 3, 2};
+    size_t ndim = 3;
+    float expected_value = 78;
+    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    auto out = x.sum_();
+    EXPECT_EQ(out, expected_value);
+  }
+
+  {
+    reset_D();
+    size_t size[4] = {2, 2, 3, 2};
+    size_t ndim = 4;
+    float expected_value = 300;
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    auto out = x.sum_();
+    EXPECT_EQ(out, expected_value);
+  }
+}
+
 } // namespace focus

@@ -115,6 +115,13 @@ public:
    */
   FloatTensor &operator/=(float value);
 
+  /**
+   * @brief Returns the sum of all the elements in the stored data.
+   *
+   * @return float
+   */
+  float sum_();
+
   /** @brief Input data. */
   float *data_;
 

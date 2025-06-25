@@ -169,4 +169,17 @@ FloatTensor &FloatTensor::operator/=(float value) {
   return *this;
 }
 
+/**
+ * @brief Returns the sum of all the elements in the stored data.
+ *
+ * @return float
+ */
+float FloatTensor::sum_() {
+  float out = 0;
+  for (size_t i = 0; i < numel_; ++i) {
+    out += data_[i];
+  }
+  return out;
+}
+
 } // namespace focus
