@@ -13,13 +13,25 @@
 namespace focus {
 
 FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim,
-                         bool requires_grad)
-    : data_(data), size_(size), ndim_(ndim), requires_grad_(requires_grad) {
+                         bool requires_grad, bool requires_allocation)
+    : data_(data), size_(size), ndim_(ndim), requires_grad_(requires_grad),
+      requires_allocation_(requires_allocation) {
 
   // Calculate the number of elements based on the provided size.
   numel_ = 1;
   for (size_t dim = 0; dim < ndim; ++dim) {
     numel_ *= size_[dim];
+  }
+
+  if (requires_allocation_) {
+    data_ = new float[numel_];
+    for (size_t i = 0; i < numel_; ++i) {
+      data_[i] = data[i];
+    }
+    size_ = new size_t[numel_];
+    for (size_t dim = 0; dim < ndim; ++dim) {
+      size_[dim] = size[dim];
+    }
   }
 
   if (requires_grad_) {
@@ -28,6 +40,11 @@ FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim,
 }
 
 FloatTensor::~FloatTensor() {
+  if (requires_allocation_) {
+    delete[] data_;
+    delete[] size_;
+  }
+
   if (requires_grad_) {
     delete[] grad_;
   }

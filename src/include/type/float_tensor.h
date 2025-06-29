@@ -17,7 +17,7 @@ namespace focus {
 class FloatTensor {
 public:
   FloatTensor(float *data, size_t *size, size_t ndim,
-              bool requires_grad = false);
+              bool requires_grad = false, bool requires_allocation = false);
   ~FloatTensor();
 
   /**
@@ -130,6 +130,11 @@ public:
 
   /** @brief Gradient with respect to the input data. */
   float *grad_;
+
+  /**
+   * @brief `true` if input `requires_allocation` was `true`, `false` otherwise.
+   */
+  bool requires_allocation_;
 
   /** @brief Size. */
   size_t *size_;
