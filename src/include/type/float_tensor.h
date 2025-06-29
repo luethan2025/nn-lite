@@ -17,7 +17,7 @@ namespace focus {
 class FloatTensor {
 public:
   FloatTensor(float *data, size_t *size, size_t ndim,
-              bool requires_grad = true);
+              bool requires_grad = false);
   ~FloatTensor();
 
   /**
@@ -125,7 +125,7 @@ public:
   /** @brief Input data. */
   float *data_;
 
-  /** @brief `true` if input `requires_grad` was `true`, `false` otherwise */
+  /** @brief `true` if input `requires_grad` was `true`, `false` otherwise. */
   bool requires_grad_;
 
   /** @brief Gradient with respect to the input data. */

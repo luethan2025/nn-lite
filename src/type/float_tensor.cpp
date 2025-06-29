@@ -14,7 +14,7 @@ namespace focus {
 
 FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim,
                          bool requires_grad)
-    : data_(data), size_(size), ndim_(ndim) {
+    : data_(data), size_(size), ndim_(ndim), requires_grad_(requires_grad) {
 
   // Calculate the number of elements based on the provided size.
   numel_ = 1;
@@ -22,10 +22,9 @@ FloatTensor::FloatTensor(float *data, size_t *size, size_t ndim,
     numel_ *= size_[dim];
   }
 
-  if (requires_grad) {
+  if (requires_grad_) {
     grad_ = new float[numel_]();
   }
-  requires_grad_ = requires_grad;
 }
 
 FloatTensor::~FloatTensor() {

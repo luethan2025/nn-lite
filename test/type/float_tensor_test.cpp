@@ -195,7 +195,7 @@ TEST(FloatTensorTest, FloatTensorGradInitialization) {
     reset_A();
     size_t size[2] = {2, 2};
     size_t ndim = 2;
-    auto x = FloatTensor(&A[0][0], size, ndim);
+    auto x = FloatTensor(&A[0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       EXPECT_EQ(x.grad_[i], 0);
     }
@@ -205,7 +205,7 @@ TEST(FloatTensorTest, FloatTensorGradInitialization) {
     reset_B();
     size_t size[2] = {3, 2};
     size_t ndim = 2;
-    auto x = FloatTensor(&B[0][0], size, ndim);
+    auto x = FloatTensor(&B[0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       EXPECT_EQ(x.grad_[i], 0);
     }
@@ -215,7 +215,7 @@ TEST(FloatTensorTest, FloatTensorGradInitialization) {
     reset_C();
     size_t size[3] = {2, 3, 2};
     size_t ndim = 3;
-    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    auto x = FloatTensor(&C[0][0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       EXPECT_EQ(x.grad_[i], 0);
     }
@@ -225,7 +225,7 @@ TEST(FloatTensorTest, FloatTensorGradInitialization) {
     reset_D();
     size_t size[4] = {2, 2, 3, 2};
     size_t ndim = 4;
-    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       EXPECT_EQ(x.grad_[i], 0);
     }
@@ -237,7 +237,7 @@ TEST(FloatTensorTest, FloatTensorZeroGrad) {
     reset_A();
     size_t size[2] = {2, 2};
     size_t ndim = 2;
-    auto x = FloatTensor(&A[0][0], size, ndim);
+    auto x = FloatTensor(&A[0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       x.grad_[i] = 1;
     }
@@ -251,7 +251,7 @@ TEST(FloatTensorTest, FloatTensorZeroGrad) {
     reset_B();
     size_t size[2] = {3, 2};
     size_t ndim = 2;
-    auto x = FloatTensor(&B[0][0], size, ndim);
+    auto x = FloatTensor(&B[0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       x.grad_[i] = 1;
     }
@@ -265,7 +265,7 @@ TEST(FloatTensorTest, FloatTensorZeroGrad) {
     reset_C();
     size_t size[3] = {2, 3, 2};
     size_t ndim = 3;
-    auto x = FloatTensor(&C[0][0][0], size, ndim);
+    auto x = FloatTensor(&C[0][0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       x.grad_[i] = 1;
     }
@@ -279,7 +279,7 @@ TEST(FloatTensorTest, FloatTensorZeroGrad) {
     reset_D();
     size_t size[4] = {2, 2, 3, 2};
     size_t ndim = 4;
-    auto x = FloatTensor(&D[0][0][0][0], size, ndim);
+    auto x = FloatTensor(&D[0][0][0][0], size, ndim, true);
     for (size_t i = 0; i < x.numel_; ++i) {
       x.grad_[i] = 1;
     }
